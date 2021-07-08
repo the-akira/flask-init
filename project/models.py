@@ -10,13 +10,13 @@ db.create_all()
 """
 
 class User(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(20), unique=True, nullable=False)
-	email = db.Column(db.String(120), unique=True, nullable=False)
-	password = db.Column(db.String(60), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
 
-	def __repr__(self):
-		return f"User('{self.username}', '{self.email}')"
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,10 +26,9 @@ class Game(db.Model):
     genres = db.relationship('Genres', backref='game', lazy=True)
 
     def __repr__(self):
-    	return f"Game('{self.id}: {self.name}', '{self.publisher}')"
+        return f"Game('{self.id}: {self.name}', '{self.publisher}')"
 
 class Genres(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
-    game_id = db.Column(db.Integer, db.ForeignKey('game.id'),
-        nullable=False)
+    game_id = db.Column(db.Integer, db.ForeignKey('game.id'),nullable=False)
